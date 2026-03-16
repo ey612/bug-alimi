@@ -55,7 +55,7 @@ def run_bug_alert(bug_title, bug_description):
 
 if __name__ == "__main__":
     # 테스트용 버그 입력
-    # 나중에 GitHub Issues 연동 시 여기서 데이터를 받아와요
+    # 나중에 GitHub Issues, Jira 연동 시 여기서 데이터를 받음
     run_bug_alert(
         bug_title="결제 버튼 클릭 시 앱 크래시",
         bug_description="메인 화면에서 결제하기 버튼 클릭 시 앱이 강제 종료됨. 재현율 100%"
