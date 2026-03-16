@@ -133,6 +133,5 @@ if __name__ == "__main__":
     print("=" * 50)
     print(" 버그알리미 Jira Webhook 서버 시작!")
     print("=" * 50)
-    # 개념: debug=True = 코드 수정 시 서버 자동 재시작
-    # port=5000 = 5000번 문으로 신호를 받겠다는 의미
-    app.run(debug=True, port=5000)
+    port = int(os.environ.get("PORT", 8080))
+    app.run(debug=False, host="0.0.0.0", port=port)
