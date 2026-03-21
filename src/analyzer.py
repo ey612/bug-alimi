@@ -68,7 +68,7 @@ def analyze_bug_with_ai(bug_title, bug_description):
                 "content": prompt
             }
         ],
-        temperature=0.1  # 개념: temperature = 창의성 조절 (0에 가까울수록 일관된 답변)
+        temperature=0.2  # 개념: temperature = 창의성 조절 (0에 가까울수록 일관된 답변)
     )
 
     # GPT 응답에서 텍스트 꺼내기
