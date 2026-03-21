@@ -18,8 +18,13 @@ from notifier import send_webhook_message
 # 개념: Flask 앱 생성
 # Flask = 파이썬으로 만드는 웹 서버
 # Jira가 우리 코드에 신호를 보낼 수 있도록 "문"을 열어주는 역할
-app = Flask(__name__)
 
+app = Flask(__name__)
+# 개념: CSRF 보호 비활성화
+# Jira Webhook은 외부에서 오는 요청이라 Flask의 CSRF 검증을 끄고
+# 대신 Jira 자체 토큰으로 검증해요
+from flask import Flask
+app.config['WTF_CSRF_ENABLED'] = False
 
 @app.route("/jira-webhook", methods=["POST"])
 def jira_webhook():

@@ -5,9 +5,17 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-# OpenAI 클라이언트 생성
-# 클라이언트(Client) = OpenAI 서버와 대화하는 창구
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+# notifier.py에서 get_secret 함수 가져오기
+from notifier import get_secret
+import os
+
+# 로컬이면 .env에서, 클라우드면 Secret Manager에서 읽어오기
+if os.getenv("IS_LOCAL", "true") == "true":
+    api_key = os.getenv("OPENAI_API_KEY")
+else:
+    api_key = get_secret("openai-api-key")
+
+client = OpenAI(api_key=api_key)
 
 
 def analyze_bug_with_ai(bug_title, bug_description):

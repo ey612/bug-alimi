@@ -3,3 +3,6 @@ python-dotenv
 openai
 pytest
 flask
+gunicorn
+google-cloud-secret-manager
+pytz
