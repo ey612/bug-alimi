@@ -26,6 +26,7 @@ app = Flask(__name__)
 from flask import Flask
 app.config['WTF_CSRF_ENABLED'] = False
 
+
 @app.route("/jira-webhook", methods=["POST"])
 def jira_webhook():
     """Jira에서 신호가 오면 실행되는 함수.
@@ -36,8 +37,11 @@ def jira_webhook():
     Returns:
         json: 처리 결과 메시지
     """
-    # 개념: request.json
-    # Jira가 보내준 데이터를 파이썬 딕셔너리로 받아요
+    
+    token = request.headers.get("X-Jira-Webhook-Secret")
+    if token != os.getenv("JIRA_WEBHOOK_SECRET"):
+        return jsonify({"error": "인증 실패"}), 401
+    
     data = request.json
     print(f"\n 받은 데이터 전체: {json.dumps(data, ensure_ascii=False, indent=2)}")
     
